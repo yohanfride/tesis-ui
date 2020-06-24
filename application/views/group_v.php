@@ -68,7 +68,7 @@
               <a href="<?= base_url()?>groups/member/<?= $d->group_code ?>" data-toggle="tooltip" data-original-title="Show Member">
                 <i class="icon md-account"></i>
               </a>
-              <a href="<?= base_url()?>groupsensor/groups/<?= $d->group_code ?>" data-toggle="tooltip" data-original-title="Show Group Sensor">
+              <a href="<?= base_url()?>devicegroups/groups/<?= $d->group_code ?>" data-toggle="tooltip" data-original-title="Show Group Sensor">
                 <i class="icon md-device-hub"></i>
               </a>
             </div>
@@ -107,5 +107,6 @@
           
         });
     });
+    
   });
 </script>

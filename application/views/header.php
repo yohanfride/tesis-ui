@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/waves/waves.css">
+        <!-- Select -->
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/select2/select2.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/bootstrap-select/bootstrap-select.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/examples/css/forms/advanced.css">
+
         <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/chartist/chartist.css">
         <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/jvectormap/jquery-jvectormap.css">
         <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
@@ -34,6 +39,19 @@
         <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/toastr/toastr.css">
         <link rel="stylesheet" href="<?= base_url()?>assets/examples/css/advanced/toastr.css">
 
+        <!-- Data Table -->
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/examples/css/tables/datatable.css">
+
+        <!-- Tree View -->
+        <link rel="stylesheet" href="<?= base_url()?>assets/global/vendor/bootstrap-treeview/bootstrap-treeview.css">
     
     
     <!-- Fonts -->
@@ -154,21 +172,21 @@
 	             	<li class="site-menu-item has-sub">
 	                <a class="animsition-link" href="<?= base_url()?>devicegroups">
 	                        <i class="site-menu-icon md-device-hub" aria-hidden="true"></i>
-	                        <span class="site-menu-title">Device Group</span>
+	                        <span class="site-menu-title">Devices Group</span>
 	                    </a>
 	              	</li>
 	              	<li class="site-menu-item has-sub">
 	                	<a class="animsition-link" href="<?= base_url()?>device">
 	                        <i class="site-menu-icon md-memory" aria-hidden="true"></i>
-	                        <span class="site-menu-title">Device</span>
+	                        <span class="site-menu-title">Devices</span>
 	                    </a>
 	              	</li>
-	              	<li class="site-menu-item has-sub">
+	              	<!-- <li class="site-menu-item has-sub">
 	                	<a class="animsition-link" href="<?= base_url()?>communication">
 	                        <i class="site-menu-icon md-cloud-outline" aria-hidden="true"></i>
 	                        <span class="site-menu-title">Communication</span>
 	                    </a>
-	              	</li>
+	              	</li> -->
 
 	              <!-- <li class="site-menu-item has-sub">
 	                <a href="javascript:void(0)">

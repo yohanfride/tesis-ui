@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class groupsensor_m extends My_Model{
+class device_m extends My_Model{
 	private $aes;
 	
 	function __construct() {
@@ -9,20 +9,20 @@ class groupsensor_m extends My_Model{
 
 	function get_detail($id){
 		$data = array(
-			"code_name" => $id
+			"device_code" => $id
 		);
-		$url = $this->config->item('url_node')."groupsensor/detail/";				
+		$url = $this->config->item('url_node')."device/detail/";				
 		return json_decode($this->sendPost($url,$data));
 	}
 
 	function add($data){
-		$url = $this->config->item('url_node')."groupsensor/add/";				
+		$url = $this->config->item('url_node')."device/add/";				
 		return json_decode($this->sendPost($url,$data));
 	}
 
 	function edit($id,$data){
 		$data+=["id" => $id];
-		$url = $this->config->item('url_node')."groupsensor/edit/";				
+		$url = $this->config->item('url_node')."device/edit/";				
 		return json_decode($this->sendPost($url,$data));
 	}
 	
@@ -30,17 +30,20 @@ class groupsensor_m extends My_Model{
 		$data = array(
 			"id" => $id
 		);
-		$url = $this->config->item('url_node')."groupsensor/delete/";				
+		$url = $this->config->item('url_node')."device/delete/";				
 		return json_decode($this->sendPost($url,$data));
 	}	
 
 	function search($data){
-		$url = $this->config->item('url_node')."groupsensor/";				
-		return json_decode($this->sendPost($url,$data));
+		$url = $this->config->item('url_node')."device/";				
+		$result =  json_decode($this->sendPost($url,$data));
+		if(!$result->status)
+			$result->data = array();
+		return $result;
 	}
 
 	function search_count($data){
-		$url = $this->config->item('url_node')."groupsensor/count/";				
+		$url = $this->config->item('url_node')."device/count/";				
 		return json_decode($this->sendPost($url,$data));
 	}
 }
