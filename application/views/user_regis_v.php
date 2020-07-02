@@ -60,8 +60,8 @@
         <div class="panel">
           <div class="panel-body">
             <div class="brand">
-              <img class="brand-img" src="<?= base_url()?>assets//images/logo-colored.png" alt="...">
-              <h2 class="brand-text font-size-18">REGISTER SEMAR</h2>
+                <img class="brand-img" src="<?= base_url()?>assets//images/logo-2.png" style="max-width:90px;">
+                <h2 class="brand-text font-size-18">SIGN UP SEMAR IOT PLATFORM</h2>
             </div>
             <form method="post" action="#">
               	<?php if($error){ ?>

@@ -92,8 +92,8 @@
           <i class="icon md-more" aria-hidden="true"></i>
         </button>
         <div class="navbar-brand navbar-brand-center">
-          <img class="navbar-brand-logo" src="<?= base_url()?>assets/images/logo.png" title="Remark">
-          <span class="navbar-brand-text hidden-xs-down"> Remark</span>
+          <img class="navbar-brand-logo" src="<?= base_url()?>assets/images/logo-2-clean.png" title="-">
+          <span class="navbar-brand-text hidden-xs-down">SEMAR DASHBOARD</span>
         </div>
       </div>
     
@@ -119,7 +119,7 @@
               <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
                 data-animation="scale-up" role="button">
                 <span class="avatar avatar-online">
-                  <img src="<?= base_url()?>assets/global/portraits/5.jpg" alt="...">
+                  <img src="<?= base_url()?>assets/global/portraits/admin.png" alt="...">
                   <i></i>
                 </span>
               </a>

@@ -3,7 +3,7 @@
   <h1 class="page-title">Add New Devices Group</h1>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?= base_url();?>">Home</a></li>
-    <li class="breadcrumb-item"><a href="<?= base_url();?>devicegroups">Devices Groups</a></li>
+    <li class="breadcrumb-item"><a href="<?= base_url();?>device">Devices</a></li>
     <li class="breadcrumb-item active">Add</li>
   </ol>
 </div>

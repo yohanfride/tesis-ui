@@ -1,10 +1,10 @@
 <?php include("header.php") ?>
 <div class="page-header">
-  <h1 class="page-title">Add New Devices Group</h1>
+  <h1 class="page-title">Update Devices Group</h1>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?= base_url();?>">Home</a></li>
-    <li class="breadcrumb-item"><a href="<?= base_url();?>devicegroups">Devices Groups</a></li>
-    <li class="breadcrumb-item active">Add</li>
+    <li class="breadcrumb-item"><a href="<?= base_url();?>device">Devices</a></li>
+    <li class="breadcrumb-item active">Update</li>
   </ol>
 </div>
 
@@ -16,7 +16,7 @@
         
           <!-- Example Basic Form (Form grid) -->
           <div class="example-wrap">
-            <h4 class="example-title">Form Add New Device</h4>
+            <h4 class="example-title">Form Update Device</h4>
             <div class="example">
               <form method="post" autocomplete="off">
                 <div class="row">
@@ -29,7 +29,10 @@
                     <div class="form-group form-material" id="selectGroup">
                       <label class="form-control-label" for="inputSelectGroup">Devices Group</label>
                       <select class="form-control " id="inputSelectGroup" name="group">
-                          <?php foreach ($device_group as $d) { ?>
+                          <?php foreach ($device_group as $d) { 
+                            if($d->code_name == $data->group_code_name)
+                              $curentgroup = $d;
+                          ?>
                           <option value="<?= $d->code_name?>"  <?= ($d->code_name == $data->group_code_name)?'selected':'' ?> ><?= $d->name?></option>
                           <?php } ?>
                       </select>
@@ -102,6 +105,133 @@
       </div>
     </div>
   </div>
+
+  <!-- <div class="row row-lg">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body container-fluid">
+          <div class="example-wrap">
+            <h4 class="example-title">Example Code in Python</h4>
+            <div class="example">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group form-material">
+                    <div class="example mt-2 mb-2">
+                      <label class="form-control-label float-left mt-3" for="inputLocation" style="width:100px;">HTTP POST</label>
+                    </div>
+                    <div>
+                      <pre>
+import requests
+from datetime import datetime
+import json
+
+token = "<b class="font-weight-700"><?= $curentgroup->token_access?></b>"
+url = "<b class="font-weight-700">http://<?= $this->config->item('url_node') ?>/comdata/sensor/"+token+"/</b>"
+today = datetime.today()
+msg = {
+    "device_code":"py787b-qo06",
+    "date_add":today.strftime("%Y-%m-%d %H:%M:%S"),
+    "gps":{
+        "latitude":-7.475973,
+        "longitude":112.978304
+    },
+    "temperature": 25.5,
+    "fuel":1000
+}
+payload = json.dumps(msg)
+headers = {
+    'Content-Type': 'application/json'
+}
+response = requests.request("POST", url, headers=headers, data = payload)
+print(response.text.encode('utf8'))
+                      </pre>
+                    </div>
+
+
+                    <div class="example mt-20 mb-2">
+                      <label class="form-control-label float-left mt-3" for="inputLocation"  style="width:100px;">MQTT</label>
+                    </div>
+                    <div>
+                      <pre>
+#!/usr/bin/python3
+import paho.mqtt.client as paho
+import json
+from datetime import datetime
+
+broker="127.0.0.1"
+port=1883
+topic='message/sensor/py787b'
+
+def on_publish(client,userdata,result): #create function for callback
+    print("data published")
+    pass
+
+client1= paho.Client("iot") #create client object
+client1.on_publish = on_publish  #assign function to callback
+client1.connect(broker,port) #establish connection
+today = datetime.today() #current-datetime
+msg = {
+    "device_code":"py787b-mw47",
+    "date_add":today.strftime("%Y-%m-%d %H:%M:%S"),
+    "gps":{
+        "latitude":-7.575973,
+        "longitude":112.878304
+    },
+    "temperature": 25.5,
+    "fuel":1000
+}
+payload = json.dumps(msg)
+ret= client1.publish(topic,payload=payload) #publish                  
+                      </pre>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group form-material">
+                    <div class="example mt-2 mb-2">
+                      <label class="form-control-label float-left mt-3" for="inputLocation"  style="width:100px;">NATS</label>
+                    </div>
+                    <div>
+                      <pre>
+from pynats import NATSClient
+import argparse
+import json
+from datetime import datetime
+
+broker = "127.0.0.1"
+port = "4222"
+subject = 'message/sensor/py787b'
+
+client = NATSClient("nats://"+broker+":"+port,socket_timeout=2, verbose=True)
+client.connect()
+today = datetime.today() #current-datetime
+msg = {
+    "device_code":"py787b-mw47",
+    "date_add":today.strftime("%Y-%m-%d %H:%M:%S"),
+    "gps":{
+        "latitude":-7.575973,
+        "longitude":112.878304
+    },
+    "temperature": 25.5,
+    "fuel":1000
+}
+payload = json.dumps(msg)
+client.publish(subject, payload=payload)
+client.close()                          
+                      </pre>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
 </div>
 <?php include("footer.php") ?>
 <script type="text/javascript">
