@@ -1,6 +1,6 @@
 <?php include("header.php") ?>
 <div class="page-header">
-  <h1 class="page-title">Add New Devices Group</h1>
+  <h1 class="page-title">Edit Devices Group</h1>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?= base_url();?>">Home</a></li>
     <li class="breadcrumb-item"><a href="<?= base_url();?>devicegroups">Devices Groups</a></li>
@@ -43,7 +43,7 @@
                       <label class="form-control-label" for="inputSelectGroup">User Group</label>
                       <select class="form-control " id="inputSelectGroup" name="group">
                           <?php foreach ($group as $d) { ?>
-                          <option value="<?= $d->group_code?>" <?= ($data->group_code == $d->group_code)?'selected':'' ?> ><?= $d->name?></option>
+                          <option value="<?= $d->group_code?>" <?= (!empty($data->group_code))?( ($data->group_code == $d->group_code)?'selected':'' ):''; ?> ><?= $d->name?></option>
                           <?php } ?>
                       </select>
                     </div>
@@ -157,9 +157,9 @@
 <?php include("footer.php") ?>
 <script type="text/javascript">
   $( document ).ready(function() {
-    <?php if( (empty($data->group)) ) { ?>
+    <?php if( (empty($group)) ) { ?>
       $("#selectGroup").hide();
-    <?php } else if($data->group != 'group'){  ?>
+    <?php } else if($data->group_type != 'group'){  ?>
       $("#selectGroup").hide();
     <?php } ?>
     // Override global options
