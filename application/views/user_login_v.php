@@ -63,7 +63,7 @@
               <img class="brand-img" src="<?= base_url()?>assets//images/logo-2.png" style="max-width:90px;">
               <h2 class="brand-text font-size-18">SIGN IN SEMAR IOT PLATFORM</h2>
             </div>
-            <form method="post" action="">
+            <form method="post" action="" id="formSubmit">
                 <?php if($error){ ?>
                     <div class="alert dark alert-alt alert-danger alert-dismissible text-left" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -74,11 +74,11 @@
                 <?php } ?>
 
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="email" class="form-control" name="email" required="" />
+                <input type="email" class="form-control" name="email" required="" id="inputEmail"/>
                 <label class="floating-label">Email</label>
               </div>
               <div class="form-group form-material floating" data-plugin="formMaterial">
-                <input type="password" class="form-control" name="password" required=""/>
+                <input type="password" class="form-control" name="password" required="" id="inputPassword"/>
                 <label class="floating-label">Password</label>
               </div>
               <div class="form-group clearfix">
