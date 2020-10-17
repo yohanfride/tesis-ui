@@ -79,7 +79,7 @@ class Device extends CI_Controller {
 		$data=array();
 		$data['success']='';
 		$data['error']='';
-		$data['title']= 'Device Group Add';		
+		$data['title']= 'Device Add';		
 		$data['user_now'] = $this->session->userdata('dasboard_iot');	
         $data['device_group'] = array();
         ////get goup////
@@ -139,7 +139,7 @@ class Device extends CI_Controller {
 		$data=array();
 		$data['success']='';
 		$data['error']='';
-		$data['title']= 'Group Edit';		
+		$data['title']= 'Device Edit';		
 		$data['user_now'] = $this->session->userdata('dasboard_iot');	
         $data['device_group'] = array();
         ////get goup////
@@ -209,6 +209,16 @@ class Device extends CI_Controller {
 		redirect(base_url().'device/?alert=failed') ; 			
 	}	
 
+    public function data($id){       
+        $data=array();
+        $data['success']='';
+        $data['error']='';
+        $data['title']= 'Device Data';       
+        $data['user_now'] = $this->session->userdata('dasboard_iot');   
+        $data['data'] = $this->device_m->get_detail($id)->data; 
+        $data['group'] = $this->groupsensor_m->get_detail($data['data']->group_code_name)->data;  
+        $this->load->view('device_data_v', $data);
+    }   
 }
 
 

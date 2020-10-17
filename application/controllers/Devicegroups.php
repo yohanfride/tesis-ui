@@ -195,6 +195,17 @@ class Devicegroups extends CI_Controller {
         $this->load->view('device_group_group_v', $data);
     }
 
+    public function data($id){       
+        $data=array();
+        $data['success']='';
+        $data['error']='';
+        $data['title']= 'Group Edit';       
+        $data['user_now'] = $this->session->userdata('dasboard_iot');   
+        $data['group'] = $this->group_m->search(array("user_id"=>$data['user_now']->id))->data;
+        $data['data'] = $this->groupsensor_m->get_detail($id)->data;        
+        $this->load->view('device_group_data_v', $data);
+    }
+
 }
 
 

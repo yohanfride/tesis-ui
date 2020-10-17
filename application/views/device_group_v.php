@@ -16,9 +16,7 @@
   <h2>Personal</h2>
   <div class="row row-lg">
     <?php foreach ($data_personal as $d) {
-            
             $total_dv = $device_m->search_count(array('group_code_name'=>$d->code_name))->data;
-
       ?>
       <div class="col-xl-3 col-lg-4 col-md-6">
         <!-- Widget Info -->
@@ -68,19 +66,23 @@
             </ul>          
           </div>
           <div class="card-block card-footer-bordered pt-10 text-center">
-            <a class="btn btn-default card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>device/?type=<?= $d->code_name?>">
-                  <i class="icon md-memory"></i> <?= $total_dv; ?> Devices Register
-                  </a>
+            <a class="btn btn-default btn-block pl-4 pr-4 mb-2 card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>device/?type=<?= $d->code_name?>">
+              <i class="icon md-memory"></i> <?= $total_dv; ?> Devices Register
+            </a>
+            <br/>
+            <a class="btn btn-info btn-block pl-4 pr-4 card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>devicegroups/data/<?= $d->code_name?>">
+              <i class="icon md-file-text"></i> Show Data
+            </a>
           </div>
           <div class="card-footer card-footer-transparent card-footer-bordered text-muted">
             <div class="row">
-              <div class="col-6 text-left">
-                  <a class="btn btn-info card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>devicegroups/edit/<?= $d->code_name?>">
+              <div class="col-6 text-left p-2">
+                  <a class="btn btn-info btn-block card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>devicegroups/edit/<?= $d->code_name?>">
                   <i class="icon md-edit"></i> Edit
                   </a>
               </div>
-              <div class="col-6 text-right">
-                  <a class="btn btn-danger card-link float-right waves-effect waves-classic btn-leave waves-effect waves-classic" href="<?= base_url()?>devicegroups/delete/<?= $d->id?>">
+              <div class="col-6 text-right p-2">
+                  <a class="btn  btn-danger btn-block card-link float-right waves-effect waves-classic btn-leave waves-effect waves-classic" href="<?= base_url()?>devicegroups/delete/<?= $d->id?>">
                   <i class="icon md-delete"></i> Remove
                   </a>
               </div>
@@ -150,18 +152,21 @@
           </div>
           <div class="card-block card-footer-bordered pt-10 text-center">
             <a class="btn btn-default card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>device/?type=<?= $d->code_name?>">
-                  <i class="icon md-memory"></i> <?= $total_dv; ?> Devices Register
-                  </a>
+              <i class="icon md-memory"></i> <?= $total_dv; ?> Devices Register
+            </a>
+            <a class="btn btn-info card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>devicegroups/data/<?= $d->code_name?>">
+              <i class="icon md-memory"></i> Show Data
+            </a>
           </div>
           <div class="card-footer card-footer-transparent card-footer-bordered text-muted">
             <div class="row">
-              <div class="col-6 text-left">
-                  <a class="btn btn-info card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>devicegroups/edit/<?= $d->code_name?>">
+              <div class="col-6 text-left p-2">
+                  <a class="btn btn-info btn-block card-link waves-effect waves-classic waves-effect waves-classic" href="<?= base_url()?>devicegroups/edit/<?= $d->code_name?>">
                   <i class="icon md-edit"></i> Edit
                   </a>
               </div>
-              <div class="col-6 text-right">
-                  <a class="btn btn-danger card-link float-right waves-effect waves-classic btn-leave waves-effect waves-classic" href="<?= base_url()?>devicegroups/delete/<?= $d->id?>">
+              <div class="col-6 text-right p-2">
+                  <a class="btn btn-danger btn-block card-link float-right waves-effect waves-classic btn-leave waves-effect waves-classic" href="<?= base_url()?>devicegroups/delete/<?= $d->id?>">
                   <i class="icon md-delete"></i> Remove
                   </a>
               </div>
