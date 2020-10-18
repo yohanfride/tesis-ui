@@ -25,13 +25,15 @@
 			} else {
 				item = {
 					sTitle:toTitleCase(title.replace("_"," ").replace("."," - ")),
-					sName:title
+					sName:title,
+					type:hit_item['type']
 				}
 				if(hit_item['type'] == 'text'){
 					item = {
 						sTitle:toTitleCase(title.replace("_"," ").replace("."," - ")),
 						sName:title,
-						orderable:false
+						orderable:false,
+						type:hit_item['type']
 					}
 				}
 				mapping.push(item);
@@ -47,10 +49,12 @@
 			client: elasticsearch.Client({ // Default elasticsearch instance
 				host: 'localhost:9200'
 			}),
-			body: ''
+			body: '',
+			columnsList: []
 		}, opts);
 
 		return function(sSource, aoData, fnCallback) {
+			console.log(conf.columnsList);
 			// EXTRACT DATATABLE STATE
 			var draw = aoData.filter(function(obj) {
 				return obj.name === 'draw';
@@ -97,14 +101,21 @@
 					columns.forEach(function(col) {
 						var split_col = col.name.split(".");
 						var item = hit._source;
-						for(var i = 0; i<split_col.length; i++){
-							console.log(split_col[i]);
-							console.log(item[split_col[i]]);
-							console.log("-------------------");
-							if(item[split_col[i]])
+						for(var i = 0; i<split_col.length; i++){							
+							if(item[split_col[i]]){
 								item = item[split_col[i]];
-							else 
+								////Transform Function///
+								var columnData = conf.columnsList[col.data];
+								if(columnData){
+									//// Transform Date Type/////
+									if(columnData.type == 'date'){
+										item = new Date(item).toISOString().substring(0, 10)+' '+ new Date(item).toLocaleTimeString();	
+									}
+								}
+							}
+							else{ 
 								item = '-';
+							}
 						}
 						row.push(item);
 					});
@@ -143,14 +154,16 @@
 					extract(hit+'.',hit_item['properties'],mapping)
 				} else {
 					var item = {
-						sTitle:toTitleCase(hit.replace("_"," ")),
-						sName:hit
+						sTitle:toTitleCase(hit.replaceAll("_"," ")),
+						sName:hit,
+						type:hit_item['type']
 					}
 					if(hit_item['type'] == 'text'){
 						var item = {
-							sTitle:toTitleCase(hit.replace("_"," ")),
+							sTitle:toTitleCase(hit.replaceAll("_"," ")),
 							sName:hit,
-							orderable:false
+							orderable:false,
+							type:hit_item['type']
 						}
 					}
 					mapping.push(item);

@@ -3,26 +3,26 @@
   <div class="row" data-plugin="matchHeight" data-by-row="true">
     <div class="col-xl-6 col-md-12">
       <!-- Widget Linearea One-->
-      <div class="card card-shadow" id="widgetLineareaOne">
+      <!-- <div class="card card-shadow" id="widgetLineareaOne">
         <iframe id="my-iframe"
             src="http://localhost:3000/public/dashboard/16ae4d81-d14f-4c3f-8250-4e67f6baa887#refresh=1"
             frameborder="0"
             height="500"
             allowtransparency
         ></iframe>
-      </div>
+      </div> -->
       <!-- End Widget Linearea One -->
     </div>
     <div class="col-xl-6 col-md-12" id="test">
       <!-- Widget Linearea One-->
-      <div class="card card-shadow" id="widgetLineareaOne">
+      <!-- <div class="card card-shadow" id="widgetLineareaOne">
         <iframe
             src="http://localhost:3000/public/dashboard/87c3998d-f59f-488f-bf74-d42cba4a3063"
             frameborder="0"
             height="500"
             allowtransparency
         ></iframe>
-      </div>
+      </div> -->
       <!-- End Widget Linearea One -->
     </div>
   </div>

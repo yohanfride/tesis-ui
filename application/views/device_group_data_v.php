@@ -19,7 +19,7 @@
           <h3 class="panel-title">List of Data : <?= $data->name; ?></h3>
         </header>
         <div class="panel-body">
-          <table class="table table-hover dataTable table-striped w-full" id="example" style="overflow: scroll;">
+          <table class="table table-hover dataTable table-striped w-full" id="example">
           </table>
         </div>
       </div>
@@ -53,9 +53,9 @@
           client: client,
           execpt:['raw_message','date_add_sensor_unix','date_add_server_unix','topic','token_access','ip_sender']
     },function(result){
-      console.log(result);
       $('#example').dataTable( {
           'columns':result,
+          "scrollX": true,
           "searching": false,
           'bProcessing': true,
           'bServerSide': true,
@@ -63,17 +63,18 @@
               index: 'group-<?= $data->code_name ?>',
               type: 'authors',
               client: client,
-                body:{
-            size:15,
-            sort: [
-                  {
-                      "date_add_server":  "desc"
-                  }
-              ],
-              query: {
-                  "match_all": {}
-              } 
-          }
+              columnsList:result,
+              body:{
+                size:15,
+                sort: [
+                      {
+                          "date_add_server":  "desc"
+                      }
+                  ],
+                  query: {
+                      "match_all": {}
+                  } 
+              },
           } )
       } );
     })
