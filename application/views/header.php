@@ -73,6 +73,11 @@
     <script>
       Breakpoints();
     </script>
+    <style type="text/css">
+      .dataTables_wrapper [aria-live="polite"]{
+        position: relative;
+      }
+    </style>
   </head>
   <body class="animsition dashboard">
     <!--[if lt IE 8]>
