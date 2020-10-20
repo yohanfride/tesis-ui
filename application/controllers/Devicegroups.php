@@ -206,6 +206,72 @@ class Devicegroups extends CI_Controller {
         $this->load->view('device_group_data_v', $data);
     }
 
+    public function list($index){        
+        $data=array();
+        $data['user_now'] = $this->session->userdata('dasboard_iot');
+        $data['group'] = [];
+        $group = $this->group_m->search(array("user_id"=>$data['user_now']->id))->data;
+        $groupcode = array();
+        foreach ($group as $key) {
+            $groupcode[] = $key->group_code;
+            $data['group'][$key->group_code] = $key;
+        }
+        $groupcode = array(
+            '$in' => $groupcode
+        );
+        $data["data_personal"] = array();
+        $data["data_group"] = array();
+        $data_personal = $this->groupsensor_m->search(array("add_by"=>$data['user_now']->id, "group_type"=>"personal"));
+        $data_group = $this->groupsensor_m->search(array("group_code"=>$groupcode, "group_type"=>"group"));
+        if($data_personal->status){
+            $data["data_personal"] = $data_personal->data;
+        }
+        if($data_group->status){
+            $data["data_group"] = $data_group->data;
+        }
+        $data['index'] = $index;
+        $this->load->view('device_group_list_v', $data);
+    }
+
+    public function addIndex($id){       
+        $data=array();
+        $data['user_now'] = $this->session->userdata('dasboard_iot');   
+        $data['data'] = $this->groupsensor_m->get_detail($id);   
+        if($data['data']->status){
+            $idgrup = $data['data']->data->id; 
+            $input = array(
+                "view_dashboard" => true,
+            );
+            $respo = $this->groupsensor_m->edit($idgrup,$input);
+            if($respo->status){             
+                echo true;
+            } else {                
+                echo false;
+            }      
+        } else {
+            echo false;
+        }
+    }   
+
+    public function removeIndex($id){       
+        $data=array();
+        $data['user_now'] = $this->session->userdata('dasboard_iot');   
+        $data['data'] = $this->groupsensor_m->get_detail($id);        
+        if($data['data']->status){
+            $idgrup = $data['data']->data->id; 
+            $input = array(
+                "view_dashboard" => false,
+            );
+            $respo = $this->groupsensor_m->edit($idgrup,$input);
+            if($respo->status){             
+                echo true;
+            } else {                
+                echo false;
+            }      
+        } else {
+            echo false;
+        }
+    }
 }
 
 

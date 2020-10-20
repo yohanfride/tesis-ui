@@ -54,7 +54,6 @@
 		}, opts);
 
 		return function(sSource, aoData, fnCallback) {
-			console.log(conf.columnsList);
 			// EXTRACT DATATABLE STATE
 			var draw = aoData.filter(function(obj) {
 				return obj.name === 'draw';
@@ -83,8 +82,11 @@
 					sort.push(colSort);	
 				}
 			});
-			if(sort)
+			if(sort.length > 0){
 				conf.body.sort = sort;
+			}
+			console.log(conf.body);
+			console.log("-----------------");
 			// ELASTICSEARCH QUERY
 			conf.client.search({
 				'index': conf.index,

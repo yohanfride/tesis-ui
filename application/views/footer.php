@@ -26,8 +26,8 @@
     <script src="<?= base_url()?>assets/global/vendor/intro-js/intro.js"></script>
     <script src="<?= base_url()?>assets/global/vendor/screenfull/screenfull.js"></script>
     <script src="<?= base_url()?>assets/global/vendor/slidepanel/jquery-slidePanel.js"></script>
-        <script src="<?= base_url()?>assets/global/vendor/chartist/chartist.min.js"></script>
-        <script src="<?= base_url()?>assets/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script>
+        <!-- <script src="<?= base_url()?>assets/global/vendor/chartist/chartist.min.js"></script> -->
+        <!-- <script src="<?= base_url()?>assets/global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script> -->
         <script src="<?= base_url()?>assets/global/vendor/jvectormap/jquery-jvectormap.min.js"></script>
         <script src="<?= base_url()?>assets/global/vendor/jvectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
         <script src="<?= base_url()?>assets/global/vendor/matchheight/jquery.matchHeight-min.js"></script>
