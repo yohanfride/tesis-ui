@@ -31806,7 +31806,7 @@ XhrConnector.prototype.request = function (params, cb) {
   var headers = host.getHeaders(params.headers);
   var async = params.async === false ? false : asyncDefault;
   xhr.open(params.method || 'GET', url, async);
-
+  console.log(headers);
   if (headers) {
     for (var key in headers) {
       if (headers[key] !== void 0) {

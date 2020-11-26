@@ -63,6 +63,13 @@
                 <span class="badge badge-pill badge-danger font-size-12">Not Active</span> 
                 <?php } ?>
               </li>
+              <li class="list-group-item px-0">KAFKA 
+                <?php if($d->communication->kafka){ ?>
+                <span class="badge badge-pill badge-success font-size-12">Active</span> 
+                <?php } else { ?>
+                <span class="badge badge-pill badge-danger font-size-12">Not Active</span> 
+                <?php } ?>
+              </li>
             </ul>          
           </div>
           <div class="card-block card-footer-bordered pt-10 text-center">

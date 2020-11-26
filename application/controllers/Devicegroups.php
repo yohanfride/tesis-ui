@@ -74,6 +74,10 @@ class Devicegroups extends CI_Controller {
                 $nats = false;
             else 
                 $nats = true;
+            if(empty($this->input->post('kafka')))
+                $kafka = false;
+            else 
+                $kafka = true;
             
             $input = array(
         		"name" => $this->input->post('name'),
@@ -89,7 +93,8 @@ class Devicegroups extends CI_Controller {
                 "communication" => array(
                         "http-post" => $http_post,
                         "mqtt" => $mqtt,
-                        "nats" => $nats
+                        "nats" => $nats,
+                        "kafka" => $kafka
                     )
             );
         	$respo = $this->groupsensor_m->add($input);
@@ -97,7 +102,7 @@ class Devicegroups extends CI_Controller {
                 $data['success']=$respo->message;                  
             } else {                
                 $data['error']=$respo->message;
-            }                       
+            }   
         }
 		$this->load->view('device_group_add_v', $data);
 	}
@@ -128,7 +133,10 @@ class Devicegroups extends CI_Controller {
                 $nats = false;
             else 
                 $nats = true;
-            
+            if(empty($this->input->post('kafka')))
+                $kafka = false;
+            else 
+                $kafka = true;
             $input = array(
                 "name" => $this->input->post('name'),
                 "updated_by" => $data['user_now']->id,
@@ -142,7 +150,8 @@ class Devicegroups extends CI_Controller {
                 "communication" => array(
                         "http-post" => $http_post,
                         "mqtt" => $mqtt,
-                        "nats" => $nats
+                        "nats" => $nats,
+                        "kafka" => $kafka
                     )
             );
         	$respo = $this->groupsensor_m->edit($idgrup,$input);

@@ -64,7 +64,7 @@
     
     var client = elasticsearch.Client({
       host: '<?= $this->config->item('url_elastic')?>',
-      method: 'POST'
+      method: 'POST'      
     });
 
     

@@ -66,7 +66,7 @@
                       <div id="default-tree"></div>
                     </div>
 
-                    <div class="row ml-20 mb-20 animation-slide-top" id="fieldDetail" style="display: none;">
+                    <!-- <div class="row ml-20 mb-20 animation-slide-top" id="fieldDetail" style="display: none;">
                       <div class="col-md-10 p-10" style="color: #4f5584;background-color: rgba(197,202,233,.1); border-radius: .215rem;border: 1px solid #c5cae9;">
                         <div class="form-group form-material mb-0">
                           <label class="form-control-label font-size-14" for="inputLocation">Field Item</label>
@@ -88,7 +88,63 @@
                           <button type="button" id="btnCloseFieldChild" class="btn btn-sm btn-danger waves-effect waves-classic float-right"><i class="md-close"></i> Cancel</button>
                         </div>
                       </div>
+                    </div> -->
+
+                    <div class="row ml-20 mb-20 animation-slide-top" id="fieldDetail" style="display: none;">
+                      <div class="col-md-10 p-10" style="color: #4f5584;background-color: rgba(197,202,233,.1); border-radius: .215rem;border: 1px solid #c5cae9;">
+                        <div class="form-group form-material mb-0">
+                          <label class="form-control-label font-size-14" for="inputLocation">Field Item</label>
+                          <!-- <input type="text" class="form-control mb-10" id="inputField" placeholder="field" autocomplete="off"> -->
+
+                          <div class="form-group form-material mt-5 row" data-plugin="formMaterial">
+                            <div class="col-md-8 col-sm-12">
+                              <input type="text" class="form-control " id="inputField">
+                              <label class="floating-label">Field Name</label>
+                            </div>
+                            <div class="col-md-4 col-sm-12" id="formChildType">
+                              <select class="form-control" id="inputFieldType">
+                                <option value="">Default</option>
+                                <option value=" [image-file]">Image File</option>
+                              </select>
+                              <label class="floating-label">Field Type</label>
+                            </div>
+                          </div>
+
+                          <button type="button" id="btnAddChildField" class="btn btn-sm btn-info waves-effect waves-classic mb-5"><i class="md-plus"></i> Add New Child</button>
+                          <button type="button" id="btnUpdateField" class="btn btn-warning btn-sm waves-effect waves-classic mb-5"><i class="md-edit"></i> Update</button>
+                          <button type="button" id="btnDeleteChildField" class="btn btn-sm btn-danger waves-effect waves-classic mb-5"><i class="md-delete"></i> Delete Child</button>
+                          <button type="button" id="btnCloseFieldDetail" class="btn btn-sm btn-danger waves-effect waves-classic float-right mb-5"><i class="md-close"></i> Cancel</button>
+                        </div>
+                      </div>
                     </div>
+
+                    <div class="row ml-20 mb-20 animation-slide-bottom" id="fieldChild" style="display: none;">
+                      <div class="col-md-10 p-10" style="color: #4f5584;background-color: rgba(197,202,233,.1); border-radius: .215rem;border: 1px solid #c5cae9;">
+                        <div class="form-group form-material mb-0">
+                          <label class="form-control-label font-size-14" for="inputLocation">Add New Field : Parent of  <b id="parent_new"></b></label>
+                          <!-- 
+                          <input type="text" class="form-control mb-10" id="inputChild" placeholder="field" autocomplete="off">
+                           -->
+                          <div class="form-group form-material mt-5 row" data-plugin="formMaterial">
+                            <div class="col-md-8 col-sm-12">
+                              <input type="text" class="form-control empty" id="inputChild">
+                              <label class="floating-label">Field Name</label>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                              <select class="form-control" id="inputChildType">
+                                <option value="">Default</option>
+                                <option value=" [image-file]">Image File</option>
+                              </select>
+                              <label class="floating-label">Field Type</label>
+                            </div>
+                          </div>
+                          
+                          <button type="button" id="btnAddField" class="btn btn-sm btn-info waves-effect waves-classic"><i class="md-plus"></i> Add Field</button>
+                          <button type="button" id="btnCloseFieldChild" class="btn btn-sm btn-danger waves-effect waves-classic float-right"><i class="md-close"></i> Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
                 <div class="form-group form-material">
@@ -106,132 +162,6 @@
     </div>
   </div>
 
-  <!-- <div class="row row-lg">
-    <div class="col-md-12">
-      <div class="panel">
-        <div class="panel-body container-fluid">
-          <div class="example-wrap">
-            <h4 class="example-title">Example Code in Python</h4>
-            <div class="example">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group form-material">
-                    <div class="example mt-2 mb-2">
-                      <label class="form-control-label float-left mt-3" for="inputLocation" style="width:100px;">HTTP POST</label>
-                    </div>
-                    <div>
-                      <pre>
-import requests
-from datetime import datetime
-import json
-
-token = "<b class="font-weight-700"><?= $curentgroup->token_access?></b>"
-url = "<b class="font-weight-700">http://<?= $this->config->item('url_node') ?>/comdata/sensor/"+token+"/</b>"
-today = datetime.today()
-msg = {
-    "device_code":"py787b-qo06",
-    "date_add":today.strftime("%Y-%m-%d %H:%M:%S"),
-    "gps":{
-        "latitude":-7.475973,
-        "longitude":112.978304
-    },
-    "temperature": 25.5,
-    "fuel":1000
-}
-payload = json.dumps(msg)
-headers = {
-    'Content-Type': 'application/json'
-}
-response = requests.request("POST", url, headers=headers, data = payload)
-print(response.text.encode('utf8'))
-                      </pre>
-                    </div>
-
-
-                    <div class="example mt-20 mb-2">
-                      <label class="form-control-label float-left mt-3" for="inputLocation"  style="width:100px;">MQTT</label>
-                    </div>
-                    <div>
-                      <pre>
-#!/usr/bin/python3
-import paho.mqtt.client as paho
-import json
-from datetime import datetime
-
-broker="127.0.0.1"
-port=1883
-topic='message/sensor/py787b'
-
-def on_publish(client,userdata,result): #create function for callback
-    print("data published")
-    pass
-
-client1= paho.Client("iot") #create client object
-client1.on_publish = on_publish  #assign function to callback
-client1.connect(broker,port) #establish connection
-today = datetime.today() #current-datetime
-msg = {
-    "device_code":"py787b-mw47",
-    "date_add":today.strftime("%Y-%m-%d %H:%M:%S"),
-    "gps":{
-        "latitude":-7.575973,
-        "longitude":112.878304
-    },
-    "temperature": 25.5,
-    "fuel":1000
-}
-payload = json.dumps(msg)
-ret= client1.publish(topic,payload=payload) #publish                  
-                      </pre>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group form-material">
-                    <div class="example mt-2 mb-2">
-                      <label class="form-control-label float-left mt-3" for="inputLocation"  style="width:100px;">NATS</label>
-                    </div>
-                    <div>
-                      <pre>
-from pynats import NATSClient
-import argparse
-import json
-from datetime import datetime
-
-broker = "127.0.0.1"
-port = "4222"
-subject = 'message/sensor/py787b'
-
-client = NATSClient("nats://"+broker+":"+port,socket_timeout=2, verbose=True)
-client.connect()
-today = datetime.today() #current-datetime
-msg = {
-    "device_code":"py787b-mw47",
-    "date_add":today.strftime("%Y-%m-%d %H:%M:%S"),
-    "gps":{
-        "latitude":-7.575973,
-        "longitude":112.878304
-    },
-    "temperature": 25.5,
-    "fuel":1000
-}
-payload = json.dumps(msg)
-client.publish(subject, payload=payload)
-client.close()                          
-                      </pre>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  
 </div>
 <?php include("footer.php") ?>
 <script type="text/javascript">
@@ -276,16 +206,31 @@ client.close()
       return str;
     }
     var currentNode;
+    var prefixType = ' [image-file]';
     function choosenode(node){
+      var fieldName = node.text;
+      if(fieldName.includes(prefixType)){
+        fieldName = fieldName.replace(prefixType,'');
+        $("#btnAddChildField").hide();
+        $("#inputFieldType").val(prefixType);
+      } else {
+        $("#inputFieldType").val('');
+        $("#btnAddChildField").show();
+      }
+
       $("#fieldChild").hide();
       $("#fieldDetail").show();
-      $("#inputField").val(node.text);
+      $("#inputField").val(fieldName);
       if(node.text != "List Field"){
         $("#btnUpdateField").show();
+        $("#inputField").prop('disabled', false);
+        $("#formChildType").show();
         $("#btnDeleteChildField").show();
       } else {
+        $("#formChildType").hide();
         $("#btnUpdateField").hide();
         $("#btnDeleteChildField").hide();
+        $("#inputField").prop('disabled', true);
       }
       currentNode = node;
     }
@@ -311,6 +256,8 @@ client.close()
           var keyItem = Object.keys(item)[0];
           console.log("iteration - "+i+" from "+keyItem);
           var itemListData = item[keyItem];
+          console.log(item);
+          console.log(itemListData);
           var indexing = [];
           indexing = indexing.concat(treeData.tags);
           indexing.push("#"+keyItem);
@@ -320,7 +267,12 @@ client.close()
             tags: indexing,
             nodes:[]
           };
-          insertArray(itemListData,newData);
+
+          if(itemListData == 'image'){
+            newData.text+= prefixType;
+          } else {
+            insertArray(itemListData,newData);
+          }
           itemData.push(newData);
         } else {
           console.log("iteration - "+i+" from "+item);
@@ -396,6 +348,7 @@ client.close()
       $("#fieldDetail").hide();
       $("#inputField").val("");
       $("#fieldChild").show();
+      $("#inputChildType").val('');
     });
 
     $("#btnCloseFieldChild").click(function(){
@@ -404,6 +357,8 @@ client.close()
 
     $("#btnAddField").click(function(){
       var inputChild = $("#inputChild").val();
+      var inputChildType = $("#inputChildType").val();
+
       if(inputChild == ""){
         toastr.error('Child field name not found', 'Failed', {timeOut: 3000});
       } else {
@@ -412,7 +367,7 @@ client.close()
         indexing = indexing.concat(currentNode.tags);
         indexing.push("#"+slugInputChild);
         var newData = {
-          text: slugInputChild,
+          text: slugInputChild+inputChildType,
           href: "#"+slugInputChild,
           tags: indexing,
           nodes:[]
@@ -423,13 +378,15 @@ client.close()
     
     $("#btnUpdateField").click(function(){
       var inputField = $("#inputField").val();
+      var inputFieldType = $("#inputFieldType").val();
       if(inputField == ""){
         toastr.error('Child field name not found', 'Failed', {timeOut: 3000});
       } else {
-        var slugInputChild = string_to_slug(inputField);
+        var slugInputChild = string_to_slug(inputField) + inputFieldType;
         updateArray(currentNode.tags,slugInputChild,myTree);
       }
     });
+    
     $("#btnDeleteChildField").click(function(){
       alertify.confirm('Do you continue to delete this field?', 
         function(){ 
@@ -437,7 +394,22 @@ client.close()
         },function(){ 
           
         });
-      
+    });
+
+    $("#inputChild").keyup(function(){
+      if($("#inputChild").val() == ''){
+        $("#inputChild").addClass('empty');
+      } else {
+        $("#inputChild").removeClass('empty');
+      }
+    });
+
+    $("#inputField").keyup(function(){
+      if($("#inputField").val() == ''){
+        $("#inputField").addClass('empty');
+      } else {
+        $("#inputField").removeClass('empty');
+      }
     });
 
     function addToArray(index,newData,data){
@@ -453,7 +425,7 @@ client.close()
         childdata = data[i].nodes;
         index.shift();
         addToArray(index,newData,childdata)
-      }
+      }      
     }
 
     function updateArray(index,updateData,data){
@@ -469,6 +441,22 @@ client.close()
         childdata = data[i].nodes;
         index.shift();
         updateArray(index,updateData,childdata)
+      }
+    }
+
+    function deleteArray(index,data){
+      for (i = 0; i < data.length; i++) {
+        if(data[i]['href'] == index[0])
+          break;
+      }
+      if(index.length == 1){
+        data.splice(i,1);
+        updateTree();
+        toastr.success('Delete field success', 'Success', {timeOut: 3000})
+      } else {
+        childdata = data[i].nodes;
+        index.shift();
+        deleteArray(index,childdata)
       }
     }
 

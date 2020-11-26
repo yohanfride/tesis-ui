@@ -135,6 +135,26 @@
                         </code>
                       </div>
 
+                      <div class="example mt-20 mb-2">
+                        <label class="form-control-label float-left mt-3" for="inputLocation"  style="width:100px;">KAFKA <br/><span style="color:red; font-size: 10px;">*for image data</span> </label>
+                        <div class="float-left">
+                          <label class="float-left pt-3" for="inputBasicOff">On</label>
+                          <div class="float-left ml-20 mr-20">
+                            <input type="checkbox" id="inputBasicOff" name="kafka" data-plugin="switchery"
+                            <?= ($data->communication->{'kafka'})?'checked':'' ?> />
+                          </div>
+                          <label class="pt-3" for="inputBasicOff">Off</label>
+                        </div>
+                      </div>
+                      <div>
+                        <code class="p-10" style="display: block;">
+                          <b class="font-weight-700">Send your sensor through Kafka using this topic </b><br/>
+                          <span class="ml-10">message-sensor-[devices group code]</span> <br/>
+                          <b class="font-weight-700">Example:</b><br/>
+                          <span class="ml-10">message-sensor-<?= $data->code_name?></span> 
+                        </code>
+                      </div>
+
                     </div>
                   </div>
 

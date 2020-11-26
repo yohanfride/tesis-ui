@@ -141,7 +141,7 @@
     $.fn.dataTable.getMapping({
       index: 'group-'+code,
           client: client,
-          execpt:['raw_message','date_add_sensor_unix','date_add_server_unix','topic','token_access','ip_sender']
+          execpt:['raw_message','date_add_sensor_unix','date_add_server_unix','topic','token_access','ip_sender'],
     },function(result){
       tables[index] = $('#dataTable-'+index).dataTable( {
           'columns':result,

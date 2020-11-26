@@ -63,7 +63,22 @@
                       <div class="col-md-10 p-10" style="color: #4f5584;background-color: rgba(197,202,233,.1); border-radius: .215rem;border: 1px solid #c5cae9;">
                         <div class="form-group form-material mb-0">
                           <label class="form-control-label font-size-14" for="inputLocation">Field Item</label>
-                          <input type="text" class="form-control mb-10" id="inputField" placeholder="field" autocomplete="off">
+                          <!-- <input type="text" class="form-control mb-10" id="inputField" placeholder="field" autocomplete="off"> -->
+
+                          <div class="form-group form-material mt-5 row" data-plugin="formMaterial">
+                            <div class="col-md-8 col-sm-12">
+                              <input type="text" class="form-control " id="inputField">
+                              <label class="floating-label">Field Name</label>
+                            </div>
+                            <div class="col-md-4 col-sm-12" id="formChildType">
+                              <select class="form-control" id="inputFieldType">
+                                <option value="">Default</option>
+                                <option value=" [image-file]">Image File</option>
+                              </select>
+                              <label class="floating-label">Field Type</label>
+                            </div>
+                          </div>
+
                           <button type="button" id="btnAddChildField" class="btn btn-sm btn-info waves-effect waves-classic mb-5"><i class="md-plus"></i> Add New Child</button>
                           <button type="button" id="btnUpdateField" class="btn btn-warning btn-sm waves-effect waves-classic mb-5"><i class="md-edit"></i> Update</button>
                           <button type="button" id="btnDeleteChildField" class="btn btn-sm btn-danger waves-effect waves-classic mb-5"><i class="md-delete"></i> Delete Child</button>
@@ -73,15 +88,32 @@
                     </div>
 
                     <div class="row ml-20 mb-20 animation-slide-bottom" id="fieldChild" style="display: none;">
-                      <div class="col-md-8 p-10" style="color: #4f5584;background-color: rgba(197,202,233,.1); border-radius: .215rem;border: 1px solid #c5cae9;">
+                      <div class="col-md-10 p-10" style="color: #4f5584;background-color: rgba(197,202,233,.1); border-radius: .215rem;border: 1px solid #c5cae9;">
                         <div class="form-group form-material mb-0">
                           <label class="form-control-label font-size-14" for="inputLocation">Add New Field : Parent of  <b id="parent_new"></b></label>
+                          <!-- 
                           <input type="text" class="form-control mb-10" id="inputChild" placeholder="field" autocomplete="off">
+                           -->
+                          <div class="form-group form-material mt-5 row" data-plugin="formMaterial">
+                            <div class="col-md-8 col-sm-12">
+                              <input type="text" class="form-control empty" id="inputChild">
+                              <label class="floating-label">Field Name</label>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                              <select class="form-control" id="inputChildType">
+                                <option value="">Default</option>
+                                <option value=" [image-file]">Image File</option>
+                              </select>
+                              <label class="floating-label">Field Type</label>
+                            </div>
+                          </div>
+                          
                           <button type="button" id="btnAddField" class="btn btn-sm btn-info waves-effect waves-classic"><i class="md-plus"></i> Add Field</button>
                           <button type="button" id="btnCloseFieldChild" class="btn btn-sm btn-danger waves-effect waves-classic float-right"><i class="md-close"></i> Cancel</button>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
                 <div class="form-group form-material">
@@ -142,16 +174,31 @@
       return str;
     }
     var currentNode;
+    var prefixType = ' [image-file]';
     function choosenode(node){
+      var fieldName = node.text;
+      if(fieldName.includes(prefixType)){
+        fieldName = fieldName.replace(prefixType,'');
+        $("#btnAddChildField").hide();
+        $("#inputFieldType").val(prefixType);
+      } else {
+        $("#inputFieldType").val('');
+        $("#btnAddChildField").show();
+      }
+
       $("#fieldChild").hide();
       $("#fieldDetail").show();
-      $("#inputField").val(node.text);
+      $("#inputField").val(fieldName);
       if(node.text != "List Field"){
         $("#btnUpdateField").show();
+        $("#inputField").prop('disabled', false);
+        $("#formChildType").show();
         $("#btnDeleteChildField").show();
       } else {
+        $("#formChildType").hide();
         $("#btnUpdateField").hide();
         $("#btnDeleteChildField").hide();
+        $("#inputField").prop('disabled', true);
       }
       currentNode = node;
     }
@@ -168,6 +215,7 @@
     // console.log(myList);
     var myList = [];
     function updateTree(){
+      
       var defaults = Plugin.getDefaults("treeview");
       defaults.nodeIcon = "icon md-nfc";
       defaults.levels = 5;
@@ -197,7 +245,14 @@
         var item = data[i]['text'];  
         console.log("iteration - "+i+" : "+item);      
         if(data[i]['nodes'].length  == 0){
-          newArray.push(item);
+          if(item.includes(prefixType)){
+            fieldName = item.replace(prefixType,'');  
+            var obj = {};
+            obj[fieldName] = 'image';
+            newArray.push(obj);
+          } else {
+            newArray.push(item);
+          }
         } else {
           var itemArray = saveArray(data[i]['nodes']);
           var obj = {};
@@ -205,6 +260,7 @@
           newArray.push(obj);
         }
       }      
+      console.log(newArray);
       return newArray;
     }
 
@@ -222,6 +278,7 @@
       $("#fieldDetail").hide();
       $("#inputField").val("");
       $("#fieldChild").show();
+      $("#inputChildType").val('');
     });
 
     $("#btnCloseFieldChild").click(function(){
@@ -230,6 +287,8 @@
 
     $("#btnAddField").click(function(){
       var inputChild = $("#inputChild").val();
+      var inputChildType = $("#inputChildType").val();
+
       if(inputChild == ""){
         toastr.error('Child field name not found', 'Failed', {timeOut: 3000});
       } else {
@@ -238,7 +297,7 @@
         indexing = indexing.concat(currentNode.tags);
         indexing.push("#"+slugInputChild);
         var newData = {
-          text: slugInputChild,
+          text: slugInputChild+inputChildType,
           href: "#"+slugInputChild,
           tags: indexing,
           nodes:[]
@@ -249,13 +308,15 @@
     
     $("#btnUpdateField").click(function(){
       var inputField = $("#inputField").val();
+      var inputFieldType = $("#inputFieldType").val();
       if(inputField == ""){
         toastr.error('Child field name not found', 'Failed', {timeOut: 3000});
       } else {
-        var slugInputChild = string_to_slug(inputField);
+        var slugInputChild = string_to_slug(inputField) + inputFieldType;
         updateArray(currentNode.tags,slugInputChild,myTree);
       }
     });
+    
     $("#btnDeleteChildField").click(function(){
       alertify.confirm('Do you continue to delete this field?', 
         function(){ 
@@ -263,7 +324,22 @@
         },function(){ 
           
         });
-      
+    });
+
+    $("#inputChild").keyup(function(){
+      if($("#inputChild").val() == ''){
+        $("#inputChild").addClass('empty');
+      } else {
+        $("#inputChild").removeClass('empty');
+      }
+    });
+
+    $("#inputField").keyup(function(){
+      if($("#inputField").val() == ''){
+        $("#inputField").addClass('empty');
+      } else {
+        $("#inputField").removeClass('empty');
+      }
     });
 
     function addToArray(index,newData,data){
@@ -279,7 +355,7 @@
         childdata = data[i].nodes;
         index.shift();
         addToArray(index,newData,childdata)
-      }
+      }      
     }
 
     function updateArray(index,updateData,data){
